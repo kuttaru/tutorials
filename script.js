@@ -1,0 +1,439 @@
+
+
+
+// scroll animation
+https://codepen.io/alexanderbird/pen/yGVMqo
+
+
+
+$(window).scroll(function() {
+  var scroll = $(window).scrollTop();
+  $(".hero").css({
+    transform: 'translate3d(0, +'+(scroll/100)+'%, 0) scale('+(100 - scroll/100)/100+')'
+  });
+});
+
+
+
+
+(function($) {
+  $(document).ready(function() {
+
+
+    $("body").on('click', 'li', function () {
+      alert("hi");
+    });
+
+
+  });
+})(jQuery);
+
+
+$(".in-click").click(function() {
+    var fontSize = parseInt($(this).css("font-size"));
+    fontSize = fontSize + 1 + "px";
+    $('html').css({'font-size':fontSize});
+});
+
+
+// Drupal ajaxComplete function
+ $( document ).ajaxComplete(function() {
+    $('select').formSelect();
+    $( ".form-checkbox,.form-radio" ).after( "<span></span>" );
+      
+});
+
+
+if (confirm('Are you sure wanty to delete?')) {
+
+}
+
+
+
+
+(function ($) {
+  Drupal.behaviors.myModuleBehavior = {
+    attach: function (context, settings) {
+    
+
+
+    }
+  };
+}(jQuery));
+
+
+
+    $("#navigation ul li ul").before("<span class='subarrow'></span>");
+    $(document.body).on('click', '#navigation .subarrow' ,function(){
+        if ($(this).closest('li').hasClass('show')) {
+            $(this).closest('li').removeClass("show");
+        } else {
+            $(this).closest('li').addClass("show");
+        }
+    });
+
+
+    $(window).scroll(function(){
+        if ($(window).scrollTop() >= 150) {
+            $('.header').addClass('fixed-header');
+        }
+        else {
+            $('.header').removeClass('fixed-header');
+        }
+    });
+
+
+    jQuery(".menu a").click(function () {
+        var $href = jQuery(this).attr("href").split('#');
+        jQuery("html, body").animate({
+            scrollTop: jQuery('#' + $href[1]).offset().top + "px"
+        }, {
+            duration: 1000,
+            easing: "swing"
+        });
+        return false;
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Scroll fixed menu ------
+
+      $(window).bind('scroll', function () {
+          var menu = $('.demo');
+          if ($(window).scrollTop() > menu.offset().top) {
+              menu.addClass('fixed');
+          } else {
+              menu.removeClass('fixed');
+          }
+      });
+
+
+
+
+
+
+
+
+
+
+// delay function
+setTimeout(function(){ 
+  $(".sub-message span").fadeOut(1000, function(){ 
+    $(this).remove(); 
+  }); 
+}, 3000);
+
+
+
+
+// var WindowsSize=function(){
+const  WindowsSize = () =>{
+    var win_height =$(window).height();
+    document.body.style.setProperty('--menuspace', win_height+'px');
+}
+
+$(document).ready(WindowsSize);
+$(window).resize(WindowsSize);
+$(window).scroll(WindowsSize);
+
+
+
+
+
+
+
+  $("#thimaar-search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".tablefield tr td").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+
+
+
+
+
+
+
+
+if($('.input-wrap .textdemo').val() !='' ) {
+    $('label.demo-label').addClass('input-has-value');
+}
+$('.input-wrap .textdemo').blur(function(){
+    if($('.input-wrap .textdemo').val() !='' ) {
+      $('label.demo-label').addClass('input-has-value');
+    }else{
+      $('label.demo-label').removeClass('input-has-value');
+    }   
+}
+
+
+
+
+
+
+
+// ======= Calculations =======
+
+$("#skill-matrix .t-input").on("keyup", function(){
+    var intValue = parseInt($(this).val().replace(/%/g, '') ) || 0;
+    $(this).val( intValue + '%' );
+    
+  $("#skill-matrix .table-row").each(function(){
+    var sum = 0;
+      $(this).find(".t-input").each(function(){
+          sum += +$(this).val().replace(/%/g, '');
+      });
+  });
+});
+
+// table td input value sum
+var totalPoints = 0;
+$('#itemtable_list tr .newqty').each(function(){
+        totalPoints = parseFloat($(this).val()) + totalPoints;
+});
+console.log(totalPoints);
+
+
+
+// ======= localStorage =======
+
+(function($) {
+  $(document).ready(function() {
+    $('body').addClass("activepop");
+    if (localStorage.getItem("popup") === "active") {
+      $('body').removeClass("activepop");
+    }
+    $(document.body).on('click', '#popclose' ,function(){
+      localStorage.setItem("popup","active");
+      $('body').removeClass("activepop");
+    });
+  });
+})(jQuery);
+
+
+
+$(window).scroll(function() {
+    var a = true;
+    var offsettop = parseInt($(this).scrollTop());
+    var parentHeight = parseInt($('body').height() - $(window).height());
+    var vscrollwidth = offsettop / parentHeight * 100;
+    $("#cw-innr-prgrs-bar").css({
+        width: vscrollwidth + '%'
+    });
+});
+
+var sclIcon_offsettop = parseInt($(this).scrollTop());
+var getScrollPerc = $('#cw-innr-prgrs-bar').width() / $('#cw-innr-prgrs-bar').parent().width() * 100;
+console.log(getScrollPerc);
+
+
+// ======= Contact Form Validations ======= //
+
+//select first option disable 
+
+$("#edit-field-gender option:first-child").attr("disabled", "true");
+
+  $('.your-name .wpcf7-text').on('keyup blur', function(){
+      var node = $(this);
+      node.val( node.val().replace(/[^a-z]/g,'')); 
+  }); 
+
+
+  $('.test').keyup(function () {     
+    this.value = this.value.replace(/[^a-z A-Z]/g,'');
+  });
+
+
+
+  $(".your-email .wpcf7-text").keyup(function () {  
+    $(this).val($(this).val().toLowerCase());  
+  });  
+
+  $('.tel-761 .wpcf7-text').on('keyup blur', function(){
+      var node = $(this);
+      node.val( node.val().replace(/[^0-9]/g,'')); 
+  }); 
+
+
+
+
+
+
+
+// scroll animation
+
+! function(s) {
+    "use strict";
+    s(".switch").on("click", function() {
+        s("body").hasClass("light") ? (s("body").removeClass("light"), s(".switch").removeClass("switched")) : (s("body").addClass("light"), s(".switch").addClass("switched"))
+    }), s(document).ready(function() {
+        var e = document.querySelector(".progress-wrap path"),
+            t = e.getTotalLength();
+        e.style.transition = e.style.WebkitTransition = "none", e.style.strokeDasharray = t + " " + t, e.style.strokeDashoffset = t, e.getBoundingClientRect(), e.style.transition = e.style.WebkitTransition = "stroke-dashoffset 10ms linear";
+        var o = function() {
+            var o = s(window).scrollTop(),
+                r = s(document).height() - s(window).height(),
+                i = t - o * t / r;
+            e.style.strokeDashoffset = i
+        };
+        o(), s(window).scroll(o);
+        jQuery(window).on("scroll", function() {
+            jQuery(this).scrollTop() > 50 ? jQuery(".progress-wrap").addClass("active-progress") : jQuery(".progress-wrap").removeClass("active-progress")
+        }), jQuery(".progress-wrap").on("click", function(s) {
+            return s.preventDefault(), jQuery("html, body").animate({
+                scrollTop: 0
+            }, 550), !1
+        })
+    })
+}(jQuery);
+
+
+
+// on Mouse move animation
+$('.field--name-field-images .field__item').on('mousemove', function(e){
+$(this).children('img').css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +'%'});
+});
+
+
+var top =((e.pageX - $(this).offset().top) / $(this).height());
+var left =((e.pageX - $(this).offset().left) / $(this).width());
+$(this).find('p.rot').css('transform','rotate('+top*100+'deg)'); 
+$(this).find('p.trans').css('transform','translate('+top*10+'px,'+left+'px)'); 
+console.log(top);
+
+
+
+$('.mousemove').on('mousemove', function(e){
+	/*
+	var top =((e.pageX - $(this).offset().top) / $(this).height());
+	var left =((e.pageX - $(this).offset().left) / $(this).width());
+	$(this).find('.rotate_anim').css('transform','rotate('+top*100+'deg)');
+	$(this).find('.trans_anim').css('transform','translate('+top*10+'px,'+left+'px)'); 
+	*/
+	
+	$(this).find('.anim_move').css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 +'%'});
+	
+});
+
+
+
+
+// materialize popup(modal) open close function
+
+    $('.modal').modal({
+        dismissible: true,
+        onOpenEnd: function(modal, trigger) {
+        $("#video").trigger('play'); 
+        },
+        onCloseEnd: function() { 
+        $("#video").trigger('pause');
+        } 
+    });
+
+
+// tabs active
+    $(document).on('click', '.nextbtn', function(e) {
+        var tab_id = $(this).attr("href").substr(1);
+        $('.tabs').tabs('select', tab_id);
+        e.preventDefault();
+    });
+
+
+// scrollspy --------------
+var sectionIds = $('.scrl-menu .elementor-icon-list-items a');
+$(document).scroll(function(){
+    sectionIds.each(function(){
+        var container = $(this).attr('href');
+        var containerOffset = $(container).offset().top;
+        var containerHeight = $(container).outerHeight();
+        var containerBottom = containerOffset + containerHeight;
+        var scrollPosition = $(document).scrollTop();
+
+        if(scrollPosition < containerBottom - 80 && scrollPosition >= containerOffset - 80){
+            $(this).addClass('active');
+        } else{
+            $(this).removeClass('active');
+        }
+    });
+});
+
+
+
+// mouse move and scroll --------
+
+/*
+    .anim {transform: scale(1.05,1.05)translate3d(calc(var(--moveval) * .5%),calc(var(--moveval) * .5%),0);}
+    .anim {transform: translate3d(calc(var(--moveval) * .5%),0,0);}
+    .anim {transform: translateX(calc(var(--moveval) * .5%));}
+    .anim {.logo-otr { transform: rotate(calc(var(--moveval) * 360deg/200));}
+*/
+
+
+
+window.addEventListener('scroll', function(){
+    document.body.style.setProperty('--moveval', this.scrollY);
+});
+
+$('body').on('mousemove', function(e){
+    var top =((e.pageX - $(this).offset().top) / $(this).height());
+    document.body.style.setProperty('--movetop', top);
+
+    var left =((e.pageX - $(this).offset().left) / $(this).width());
+    document.body.style.setProperty('--moveleft', left);
+});
+
+
+/*
+
+<div class="count_input">
+    <input type="number" class="form-control" value="1">
+    <span class="increase number_btn">+</span>
+    <span class="decrease number_btn">-</span>
+</div>
+*/
+
+
+
+function ($, Drupal) {
+
+    'use strict';
+
+    /**
+     * Close behaviour.
+     */
+    Drupal.behaviors.quantityIncDec = {
+      attach: function (context) {
+
+        $('.form-type-number .form-number').once().after( '<span class="increase number_btn">+</span><span class="decrease number_btn">-</span>' );
+        $(".form-type-number .number_btn").once().on("click", function() {
+            var $button = $(this);
+            var oldValue = parseInt($button.parent().find("input").val());
+            var newVal;
+
+            if ($button.text() === "+") {
+              newVal = oldValue + 1;
+            } else {
+              // Don't allow decrementing below zero
+              newVal = (oldValue > 0) ? oldValue - 1 : 0;
+            }
+
+            $button.parent().find("input").val(newVal);
+          });
+      }
+    };
+
+  })(jQuery, Drupal);
+
