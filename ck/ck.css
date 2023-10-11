@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;900&display=swap');
+
+* {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+.btn:focus, .btn:active:focus, .btn.active:focus { outline: none; outline: none; outline-offset: 0; box-shadow: none; }
+input:focus, textarea:focus, select:focus { outline: none; }
+a:focus, a:hover, a:active { outline: none !important; }
+
+
+body.cke_editable{ font-size:18px; padding: 20px; background:#fff; font-family: 'Inter', sans-serif;line-height: 26px; color: #4e4e4e; }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif;  font-weight: 500; margin: 0px; line-height:normal; margin:20px 0; color:#212121; }
+h1 { font-size: 32px; }
+h2 { font-size: 28px; }
+h3 { font-size: 24px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+a{ color:#0000ee; }
+
+
+
+em { font-style: italic }
+strong,b { font-weight: bold }
+small { font-size: 75% }
+
+blockquote { padding: 1px; border-left: 6px solid #f00; padding-left: 20px; }
+
+
+table {
+    width: 100%;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+thead {
+    color: #000;
+}
+tr {
+    border: 1px solid #ccc;
+}
+td, th {
+    padding: 15px 10px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}

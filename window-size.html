@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Size</title>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="winSize"></div>
+<script>
+    var WindowsSize=function(){
+        var h=$(window).height(),
+            w=$(window).width();
+        $("#winSize").html("<p>Width: "+w+"<br>Height: "+h+"</p>");
+    };
+   $(document).ready(WindowsSize); 
+   $(window).resize(WindowsSize); 
+</script>
+</body>
+</html>
