@@ -364,6 +364,28 @@ $('.mousemove').on('mousemove', function(e){
     });
 
 
+
+<!-- video full screen -->
+
+$(".elementor-video").on("click", function(){
+    // go full-screen
+    if (this.requestFullscreen) {
+        this.requestFullscreen();
+    } else if (this.webkitRequestFullscreen) {
+        this.webkitRequestFullscreen();
+    } else if (this.mozRequestFullScreen) {
+        this.mozRequestFullScreen();
+    } else if (this.msRequestFullscreen) {
+        this.msRequestFullscreen();
+    }  
+});
+
+
+
+
+
+
+
 // tabs active
     $(document).on('click', '.nextbtn', function(e) {
         var tab_id = $(this).attr("href").substr(1);
