@@ -49,6 +49,18 @@ $(window).scroll(function() {
 })(jQuery);
 
 
+
+<!-- Url replace -->
+
+$(".page-body-margin a").each(function() {
+  var href = $(this).attr("href");
+    if(href.startsWith("/")){
+         $(this).attr("href", "/nfb-georgia"+href);
+    }
+});
+
+
+
 $(".in-click").click(function() {
     var fontSize = parseInt($(this).css("font-size"));
     fontSize = fontSize + 1 + "px";
