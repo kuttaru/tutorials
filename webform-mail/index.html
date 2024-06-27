@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>To-Do</title>
+<title>NFB -Email Confirmation handler</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 <style>
 body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: normal; }
@@ -50,56 +50,44 @@ button.taskDelete{background: #f44336}
 <div ng-app="TaskManager">
   <div class="content" ng-controller="taskController">
     <form>
+
+          <div class="delete">
+            <button class="taskDelete" ng-click="deleteTask()">Delete Item</button></div>
+
+
       <table class="table">
         <tbody>
           <tr>
             <th class="web-only"></th>
             <th>Title</th>
-            <th>Qty</th>
-            <th>Cost</th>
-            <th class="right-align">Total</th>
+
+            <th style="width: 10px;">:</th>
+            <th class="right-align">Value</th>
+            <th ></th>
           </tr>
-          <!-- ngRepeat: item in invoice.items -->
+          <!-- ngRepeat: item in invoice.mailvalue -->
           <tr class="web-only">
             <td></td>
             <td><input type="text" placeholder="Title" ng-model="item_title"></td>
-            <td><input type="text" class="item_qty" ng-model="new_item"  /></td>
-            <td><input type="number" ng-model="item_price" placeholder="Price"></td>
+            <td>:</td>
+            <td><input type="text" ng-model="item_evalue" placeholder="value"></td>
             <td><button class="item_add" ng-click="addNew()">Add item</button></td>
-          </tr>
-          <tr  ng-repeat="item in item track by $index" ng-model="item">
-            <td class="web-only"><label class="mark">
-                <input type="checkbox" class="taskCheckbox" ng-model="item.complete" ng-change="save()">
-                <span></span></label></td>
-            <td>{{item.title}}</td>
-            <td>{{item.quantity}}</td>
-            <td class="taskprice">{{item.price }}</td>
-            <td >{{ item.quantity * item.price }}</td>
-          <tr class="total-tr">
-            <td><button class="taskDelete" ng-click="deleteTask()">Delete Item</button></td>
-            <td colspan="3">
-              <h3 style="text-align: right;">Total</h3>
-            </td>
-            <td><h3>{{ main_total = total() | number:2 }}</h3></td>
-          </tr>
-
-
-
-          <tr class="total-tr">
-            <td colspan="3"></td>
-            <td><input type="text" placeholder="Your pocket" ng-model="item_maintotal"></td>
-            <td><b>{{ item_maintotal - main_total }}</b></td>
           </tr>
 
         </tbody>
       </table>
 
+<hr/>
 
+<table>
+    <tr  ng-repeat="item in item track by $index" ng-model="item">
 
-<h2 ng-click="checkTotal()">sda
-  {{  adad = chktotal()}}
-
-</h2>
+      <td>{{item.title}}</td>
+      <td>:<input type="checkbox" class="taskCheckbox" ng-model="item.complete" ng-change="save()"></td>
+      <td class="taskevalue">[webform_submission:values:{{item.evalue }}:raw]</td>
+      
+    </tr>
+</table>
 
 
 
@@ -114,13 +102,13 @@ var app = angular.module('TaskManager', []);
 //controllers
 app.controller('taskController', function($scope) {
 
-    $scope.saved = localStorage.getItem('items');
-    $scope.item = (localStorage.getItem('items')!==null) ?
-    JSON.parse($scope.saved) : [{"quantity":2,"price":4,"complete":false,"title":"Test"}];
-    localStorage.setItem('items', JSON.stringify($scope.item));
+    $scope.saved = localStorage.getItem('mailvalue');
+    $scope.item = (localStorage.getItem('mailvalue')!==null) ?
+    JSON.parse($scope.saved) : [{"quantity":2,"evalue":4,"complete":false,"title":"Test"}];
+    localStorage.setItem('mailvalue', JSON.stringify($scope.item));
 
     $scope.new_item = null;
-    $scope.item_price = null;
+    $scope.item_evalue = null;
     $scope.categories = null;
     $scope.item_title = $scope.categories;
     $scope.addNew = function () {
@@ -129,16 +117,15 @@ app.controller('taskController', function($scope) {
       }
 
 		$scope.item.push({
-			quantity: $scope.new_item,
-			price: $scope.item_price,
+			evalue: $scope.item_evalue,
 			complete: false,
 			title: $scope.item_title
 
         });
         $scope.new_item = '';
-        $scope.item_price = '';
+        $scope.item_evalue = '';
         $scope.item_title = '';
-        localStorage.setItem('items', JSON.stringify($scope.item));
+        localStorage.setItem('mailvalue', JSON.stringify($scope.item));
     };
     $scope.deleteTask = function () {
         var completedTask = $scope.item;
@@ -148,11 +135,11 @@ app.controller('taskController', function($scope) {
                 $scope.item.push(item);
             }
         });
-        localStorage.setItem('items', JSON.stringify($scope.item));
+        localStorage.setItem('mailvalue', JSON.stringify($scope.item));
     };
 
     $scope.save = function () {
-        localStorage.setItem('items', JSON.stringify($scope.item));
+        localStorage.setItem('mailvalue', JSON.stringify($scope.item));
     }
 
 
@@ -160,7 +147,7 @@ app.controller('taskController', function($scope) {
         var total = 0;
         for(var i = 0; i < $scope.item.length; i++){
             var product = $scope.item[i];
-            total += (product.price * product.quantity);
+            total += (product.evalue * product.quantity);
         }
           return total;
     }
@@ -185,7 +172,7 @@ app.controller('taskController', function($scope) {
       }
                 
       });
-        // localStorage.setItem('items', JSON.stringify($scope.item));
+        // localStorage.setItem('mailvalue', JSON.stringify($scope.item));
 
     };
 
