@@ -1,186 +1,294 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>NFB -Email Confirmation handler</title>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-<style>
-body { margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: normal; }
-body { line-height: 24px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-weight: normal; margin: 0; padding: 0; color: #212121; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); }
-* { box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; }
-body { text-shadow: #333 0 0 0; }
-:hover, :focus, :active, a:hover, a:focus, a:active { outline: 0; }
-input[type="text"]:focus, textarea:focus { outline: none; }
-.inputContainer { padding-bottom: 10px; }
-td input { width: 100%; padding: 10px 20px; border: 1px solid #ccc; font-size: 18px; }
-.inputContainer label { display: none; }
-.content { width: 96%; margin: 20px auto; }
-table { border-collapse: collapse; border-spacing: 0; width: 100%; font-size: 16px; margin: 0; border: 1px solid #bebfb9; margin: 0 auto; }
-table td, table th { vertical-align: middle; padding: 10px; border: 1px solid #e1e2dd; color: #000; text-align: left; }
-table th { background: #e1e2dc; }
-table tr { border: 1px solid #bebfb9; background: #fff; }
-table tr:nth-child(even) { background: #f3f4ee; }
-table td label.mark .taskCheckbox { display: none; }
-table td label.mark span { display: block; text-align: center; cursor: pointer; border: 2px solid #006bf8; width: 16px; height: 16px; margin: 0 auto; }
-table td label.mark .taskCheckbox:checked + span { background: #006bf8; }
+  <meta charset="utf-8">
+  <title>NFB -Email Confirmation handler</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      font-weight: normal;
+    }
 
-button {
-    background: #006bf8;
-    border: none;
-    color: #fff;
-    padding: 8px 14px;
-    display: inline-block;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-}
-button.taskDelete{background: #f44336}
+    body {
+      line-height: 24px;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-weight: normal;
+      margin: 0;
+      padding: 0;
+      color: #212121;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+    }
 
-@media print {
-    /* All your print styles go here */
-    .web-only { display: none; }
-    button{ display:none; }
-}
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+    }
 
-</style>
+    body {
+      text-shadow: #333 0 0 0;
+    }
+
+    :hover,
+    :focus,
+    :active,
+    a:hover,
+    a:focus,
+    a:active {
+      outline: 0;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+    }
+
+    .inputContainer {
+      padding-bottom: 10px;
+    }
+
+    td input {
+      width: 100%;
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      font-size: 18px;
+    }
+
+    .inputContainer label {
+      display: none;
+    }
+
+    .content {
+      width: 96%;
+      margin: 20px auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      font-size: 16px;
+      margin: 0;
+      border: 1px solid #bebfb9;
+      margin: 0 auto;
+    }
+
+    table td,
+    table th {
+      vertical-align: middle;
+      padding: 10px;
+      border: 1px solid #e1e2dd;
+      color: #000;
+      text-align: left;
+    }
+
+    table th {
+      background: #e1e2dc;
+    }
+
+    table tr {
+      border: 1px solid #bebfb9;
+      background: #fff;
+    }
+
+    table tr:nth-child(even) {
+      background: #f3f4ee;
+    }
+
+    table td label.mark .taskCheckbox {
+      display: none;
+    }
+
+    table td label.mark span {
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid #006bf8;
+      width: 16px;
+      height: 16px;
+      margin: 0 auto;
+    }
+
+    table td label.mark .taskCheckbox:checked+span {
+      background: #006bf8;
+    }
+
+    button {
+      background: #006bf8;
+      border: none;
+      color: #fff;
+      padding: 8px 14px;
+      display: inline-block;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.taskDelete {
+      background: #f44336
+    }
+
+    @media print {
+
+      /* All your print styles go here */
+      .web-only {
+        display: none;
+      }
+
+      button {
+        display: none;
+      }
+    }
+  </style>
 
 </head>
 
 <body>
-<div ng-app="TaskManager">
-  <div class="content" ng-controller="taskController">
-    <form>
-
-          
+  <div ng-app="TaskManager">
+    <div class="content" ng-controller="taskController">
+      <form>
 
 
-      <table class="table">
-        <tbody>
-          <tr>
-            <th></th>
-            <th>Title</th>
 
-            <th style="width: 10px;">:</th>
-            <th class="right-align">Value</th>
-            <th ></th>
+
+        <table class="table">
+          <tbody>
+            <tr>
+              <th></th>
+              <th>Title</th>
+
+              <th style="width: 10px;">:</th>
+              <th class="right-align">Value</th>
+              <th></th>
+            </tr>
+            <!-- ngRepeat: item in invoice.mailvalue -->
+            <tr class="web-only">
+              <td>
+                <div class="delete">
+                  <button class="taskDelete" ng-click="deleteTask()">Delete Item</button>
+                </div>
+              </td>
+              <td><input type="text" placeholder="Title" ng-model="item_title"></td>
+              <td>:</td>
+              <td><input type="text" ng-model="item_evalue" placeholder="value"></td>
+              <td><button class="item_add" ng-click="addNew()">Add item</button></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <hr />
+
+        <table>
+          <tr ng-repeat="item in item track by $index" ng-model="item">
+
+            <td>{{item.title}}</td>
+            <td>:<input type="checkbox" class="taskCheckbox" ng-model="item.complete" ng-change="save()"></td>
+            <td class="taskevalue">[webform_submission:values:{{item.evalue }}:raw]</td>
+
           </tr>
-          <!-- ngRepeat: item in invoice.mailvalue -->
-          <tr class="web-only">
-            <td><div class="delete">
-            <button class="taskDelete" ng-click="deleteTask()">Delete Item</button></div></td>
-            <td><input type="text" placeholder="Title" ng-model="item_title"></td>
-            <td>:</td>
-            <td><input type="text" ng-model="item_evalue" placeholder="value"></td>
-            <td><button class="item_add" ng-click="addNew()">Add item</button></td>
-          </tr>
-
-        </tbody>
-      </table>
-
-<hr/>
-
-<table>
-    <tr  ng-repeat="item in item track by $index" ng-model="item">
-
-      <td>{{item.title}}</td>
-      <td>:<input type="checkbox" class="taskCheckbox" ng-model="item.complete" ng-change="save()"></td>
-      <td class="taskevalue">[webform_submission:values:{{item.evalue }}:raw]</td>
-      
-    </tr>
-</table>
+        </table>
 
 
 
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-<script src='angular.min.js'></script>
-<script>
-//Define angular app
-var app = angular.module('TaskManager', []);
+  <script src='angular.min.js'></script>
+  <script>
+    //Define angular app
+    var app = angular.module('TaskManager', []);
 
-//controllers
-app.controller('taskController', function($scope) {
+    //controllers
+    app.controller('taskController', function ($scope) {
 
-    $scope.saved = localStorage.getItem('mailvalue');
-    $scope.item = (localStorage.getItem('mailvalue')!==null) ?
-    JSON.parse($scope.saved) : [{"quantity":2,"evalue":4,"complete":false,"title":"Test"}];
-    localStorage.setItem('mailvalue', JSON.stringify($scope.item));
+      $scope.saved = localStorage.getItem('mailvalue');
+      $scope.item = (localStorage.getItem('mailvalue') !== null) ?
+        JSON.parse($scope.saved) : [];
+      localStorage.setItem('mailvalue', JSON.stringify($scope.item));
 
-    $scope.new_item = null;
-    $scope.item_evalue = null;
-    $scope.categories = null;
-    $scope.item_title = $scope.categories;
-    $scope.addNew = function () {
-		if(!$scope.new_item) {
-		    $scope.new_item =1;
-      }
+      $scope.new_item = null;
+      $scope.item_evalue = null;
+      $scope.categories = null;
+      $scope.item_title = $scope.categories;
+      $scope.addNew = function () {
+        if (!$scope.new_item) {
+          $scope.new_item = 1;
+        }
 
-		$scope.item.push({
-			evalue: $scope.item_evalue,
-			complete: false,
-			title: $scope.item_title
+        $scope.item.push({
+          evalue: $scope.item_evalue,
+          complete: false,
+          title: $scope.item_title
 
         });
         $scope.new_item = '';
         $scope.item_evalue = '';
         $scope.item_title = '';
         localStorage.setItem('mailvalue', JSON.stringify($scope.item));
-    };
-    $scope.deleteTask = function () {
+      };
+      $scope.deleteTask = function () {
         var completedTask = $scope.item;
         $scope.item = [];
         angular.forEach(completedTask, function (item) {
-            if (!item.complete) {
-                $scope.item.push(item);
-            }
+          if (!item.complete) {
+            $scope.item.push(item);
+          }
         });
         localStorage.setItem('mailvalue', JSON.stringify($scope.item));
-    };
+      };
 
-    $scope.save = function () {
+      $scope.save = function () {
         localStorage.setItem('mailvalue', JSON.stringify($scope.item));
-    }
+      }
 
 
-    $scope.total = function(){
+      $scope.total = function () {
         var total = 0;
-        for(var i = 0; i < $scope.item.length; i++){
-            var product = $scope.item[i];
-            total += (product.evalue * product.quantity);
+        for (var i = 0; i < $scope.item.length; i++) {
+          var product = $scope.item[i];
+          total += (product.evalue * product.quantity);
         }
-          return total;
-    }
+        return total;
+      }
 
 
 
-  $scope.checkTotal = function () {
+      $scope.checkTotal = function () {
 
-    var completedTask = $scope.item;
-    angular.forEach(completedTask, function (item) {
+        var completedTask = $scope.item;
+        angular.forEach(completedTask, function (item) {
 
-      if (item.complete) {
+          if (item.complete) {
 
 
             console.log(item);
 
-          
 
 
 
 
-      }
-                
-      });
+
+          }
+
+        });
         // localStorage.setItem('mailvalue', JSON.stringify($scope.item));
 
-    };
+      };
 
 
 
 
 
-});
-</script>
+    });
+  </script>
 </body>
+
 </html>
