@@ -22,7 +22,17 @@ $('.counter-wrap .counter').each(function () {
 });
 
 
-
+<h3>radio buttion changr function show/hide div </h3>
+$("#editrow-custom_5").hide();
+$("body").on('change', '#editrow-custom_3 input', function () {
+	var radio_value= $(this).val();
+	if(radio_value =='3'){
+	    $("#editrow-custom_5").show();
+	} else {
+	    $("#editrow-custom_5").hide();
+	}
+});
+<hr/>
 
 
 
