@@ -20,7 +20,7 @@ $('.counter-wrap .counter').each(function () {
       }
    });
 });
-
+<hr/>
 
 <h3>radio buttion change function show/hide div </h3>
 $("#editrow-custom_5").hide();
@@ -53,9 +53,9 @@ $(window).scroll(function() {
   });
 });
 
+<hr/>
 
 $('body').once('clickTooltip').on('click', '.sidebar-item', function () {
-
 
 (function($) {
   $(document).ready(function() {
@@ -70,8 +70,8 @@ $('body').once('clickTooltip').on('click', '.sidebar-item', function () {
 })(jQuery);
 
 
-
-<!-- Url replace -->
+<hr/>
+<h3>Url replace</h3>  
 
 $(".page-body-margin a").each(function() {
   var href = $(this).attr("href");
@@ -88,14 +88,13 @@ $(".in-click").click(function() {
     $('html').css({'font-size':fontSize});
 });
 
-
-// Drupal ajaxComplete function
+<h3>Drupal ajaxComplete function</h3>
  $( document ).ajaxComplete(function() {
     $('select').formSelect();
     $( ".form-checkbox,.form-radio" ).after( "<span></span>" );
       
 });
-
+<hr/>
 
 if (confirm('Are you sure wanty to delete?')) {
 
@@ -114,7 +113,7 @@ if (confirm('Are you sure wanty to delete?')) {
   };
 }(jQuery));
 
-
+<hr/>
 
     $("#navigation ul li ul").before("<span class='subarrow'></span>");
     $(document.body).on('click', '#navigation .subarrow' ,function(){
@@ -135,7 +134,7 @@ if (confirm('Are you sure wanty to delete?')) {
         }
     });
 
-
+<hr/>
     jQuery(".menu a").click(function () {
         var $href = jQuery(this).attr("href").split('#');
         jQuery("html, body").animate({
@@ -147,21 +146,11 @@ if (confirm('Are you sure wanty to delete?')) {
         return false;
     });
 
+<hr/>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Scroll fixed menu ------
+<h3>Scroll fixed menu</h3>
+//  ------
 
       $(window).bind('scroll', function () {
           var menu = $('.demo');
@@ -171,17 +160,9 @@ if (confirm('Are you sure wanty to delete?')) {
               menu.removeClass('fixed');
           }
       });
-
-
-
-
-
-
-
-
-
-
-// delay function
+<hr/>
+	
+<h3>Delay function</h3>
 setTimeout(function(){ 
   $(".sub-message span").fadeOut(1000, function(){ 
     $(this).remove(); 
@@ -190,8 +171,9 @@ setTimeout(function(){
 
 
 
-
-// var WindowsSize=function(){
+<h3>WindowsSize</h3>
+	
+var WindowsSize=function(){
 const  WindowsSize = () =>{
     var win_height =$(window).height();
     document.body.style.setProperty('--menuspace', win_height+'px');
@@ -203,21 +185,12 @@ $(window).scroll(WindowsSize);
 
 
 
-
-
-
-
   $("#thimaar-search").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $(".tablefield tr td").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
-
-
-
-
-
 
 
 
