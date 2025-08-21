@@ -22,7 +22,7 @@ $('.counter-wrap .counter').each(function () {
 });
 
 
-<h3>radio buttion changr function show/hide div </h3>
+<h3>radio buttion change function show/hide div </h3>
 $("#editrow-custom_5").hide();
 $("body").on('change', '#editrow-custom_3 input', function () {
 	var radio_value= $(this).val();
@@ -34,7 +34,17 @@ $("body").on('change', '#editrow-custom_3 input', function () {
 });
 <hr/>
 
+<h3>Selectbox value text in to textfield</h3>
+(function($) {
+  $(document).ready(function() {
+    $('#edit-civicrm-1-contribution-1-cg2-custom-2').change(function(){
+        var chapter = $(this).find("option:selected").text();
+        $('#edit-chapter').val(chapter);
+    })
+  });
+})(jQuery);
 
+<hr/>
 
 $(window).scroll(function() {
   var scroll = $(window).scrollTop();
